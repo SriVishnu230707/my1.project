@@ -1,41 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Focus Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Orbit OS — a cinematic spatial focus dashboard.">
+  <title>Orbit OS — Spatial Focus</title>
   <style>
-    :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; --bg:#08111f; --card:#111d30; --muted:#91a4bf; --accent:#7c5cff; }
-    * { box-sizing: border-box; }
-    body { margin:0; min-height:100vh; background:radial-gradient(circle at top right,#172a4f 0,#08111f 45%); color:#f5f7fb; }
-    header, main { width:min(1100px,92%); margin:auto; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:28px 0; }
-    .brand { font-weight:800; letter-spacing:.04em; }
-    button { border:0; border-radius:12px; padding:11px 16px; background:var(--accent); color:white; cursor:pointer; font-weight:700; }
-    .hero { display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:center; padding:50px 0; }
-    h1 { font-size:clamp(2.5rem,7vw,5.5rem); line-height:.95; margin:0 0 20px; }
-    p { color:var(--muted); line-height:1.7; }
-    .card { background:rgba(17,29,48,.86); border:1px solid #263956; border-radius:22px; padding:22px; box-shadow:0 24px 70px #0006; }
-    .metric { display:flex; justify-content:space-between; align-items:center; margin:14px 0; padding:14px; background:#0c1728; border-radius:14px; }
-    .bar { height:8px; background:#253553; border-radius:99px; overflow:hidden; margin-top:8px; }
-    .bar span { display:block; height:100%; background:linear-gradient(90deg,#7c5cff,#36d1dc); }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding-bottom:48px; }
-    .grid strong { font-size:1.7rem; display:block; margin-bottom:4px; }
-    @media(max-width:760px){ .hero,.grid{grid-template-columns:1fr;} h1{font-size:3.4rem;} }
+    :root{--ink:#f7f8ff;--muted:#aeb6cf;--line:rgba(255,255,255,.11);--panel:rgba(15,18,35,.62);--a:#9b87ff;--b:#50e7ff;--c:#ff8edb;--shadow:0 30px 80px rgba(0,0,0,.4)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--ink);font:500 15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080a13;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 72% 24%,rgba(92,73,255,.28),transparent 30%),radial-gradient(circle at 18% 70%,rgba(42,220,232,.16),transparent 28%),linear-gradient(#080a13,#0c1020)}
+    body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black,transparent 82%)}
+    button{font:inherit}.shell{width:min(1180px,calc(100% - 36px));margin:auto}.nav{height:86px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}.mark{width:31px;aspect-ratio:1;border-radius:10px;background:conic-gradient(from 220deg,var(--b),var(--a),var(--c),var(--b));box-shadow:0 0 30px rgba(126,108,255,.5);transform:rotate(-8deg)}.nav-meta{display:flex;gap:8px}.pill{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);padding:9px 13px;border-radius:999px;backdrop-filter:blur(14px)}
+    .hero{min-height:calc(100vh - 86px);display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;padding:44px 0 84px}.eyebrow{color:#9ff5ff;text-transform:uppercase;letter-spacing:.19em;font-size:11px;font-weight:850}.copy h1{font-size:clamp(54px,7.4vw,100px);line-height:.91;letter-spacing:-.075em;margin:20px 0 24px;max-width:700px}.copy h1 span{color:transparent;background:linear-gradient(120deg,#fff 20%,var(--b),var(--a) 72%,var(--c));background-clip:text}.copy p{max-width:570px;color:var(--muted);font-size:clamp(16px,2vw,19px)}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.primary,.ghost{border:0;border-radius:14px;padding:14px 19px;cursor:pointer;transition:.25s}.primary{color:#080914;background:linear-gradient(135deg,#eaffff,var(--b) 55%,#c1b7ff);font-weight:850;box-shadow:0 14px 38px rgba(80,231,255,.19)}.ghost{color:white;background:rgba(255,255,255,.055);border:1px solid var(--line)}.primary:hover,.ghost:hover{transform:translateY(-3px)}
+    .scene{min-height:560px;display:grid;place-items:center;perspective:1100px;position:relative}.orb-wrap{position:relative;width:min(440px,88vw);aspect-ratio:1;transform-style:preserve-3d;animation:float 6s ease-in-out infinite}.orb{position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle at 31% 25%,#fff 0 3%,#81f4ff 8%,#6655e7 38%,#161538 68%,#090a16 100%);box-shadow:inset -32px -36px 64px rgba(0,0,0,.5),0 0 65px rgba(102,85,231,.45),0 45px 90px rgba(0,0,0,.48)}.orb:after{content:"";position:absolute;inset:-25%;border-radius:50%;background:radial-gradient(circle,rgba(85,231,255,.14),transparent 64%);filter:blur(16px)}.ring{position:absolute;inset:9%;border:2px solid rgba(191,186,255,.6);border-radius:50%;transform:rotateX(68deg) rotateZ(-20deg);box-shadow:0 0 22px rgba(153,135,255,.5),inset 0 0 18px rgba(80,231,255,.3)}.ring:after{content:"";position:absolute;width:13px;aspect-ratio:1;border-radius:50%;top:12%;left:16%;background:#fff;box-shadow:0 0 18px 6px var(--b)}
+    .metric{position:absolute;width:178px;padding:17px;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:linear-gradient(135deg,rgba(24,28,52,.88),rgba(13,15,29,.56));box-shadow:var(--shadow);backdrop-filter:blur(20px);transform-style:preserve-3d;transition:transform .18s ease}.metric b{display:block;font-size:25px;letter-spacing:-.04em}.metric small{color:var(--muted)}.metric i{display:block;width:34px;height:5px;border-radius:5px;margin-bottom:15px;background:linear-gradient(90deg,var(--b),var(--a))}.m1{top:9%;left:-2%;transform:translateZ(70px) rotateY(8deg)}.m2{right:-3%;top:31%;transform:translateZ(105px) rotateY(-9deg)}.m3{bottom:5%;left:10%;transform:translateZ(130px) rotateX(4deg)}
+    .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-bottom:70px}.card{border:1px solid var(--line);background:var(--panel);border-radius:22px;padding:22px;backdrop-filter:blur(18px);box-shadow:var(--shadow)}.card span{color:var(--muted);font-size:13px}.card strong{display:block;font-size:27px;margin-top:5px;letter-spacing:-.04em}
+    @keyframes float{50%{transform:translateY(-14px) rotateY(3deg)}}@media(max-width:860px){.hero{grid-template-columns:1fr;text-align:center;padding-top:55px}.copy p{margin-inline:auto}.actions{justify-content:center}.scene{min-height:500px}.strip{grid-template-columns:1fr}.nav-meta .pill:first-child{display:none}}@media(max-width:520px){.shell{width:min(100% - 24px,1180px)}.nav{height:70px}.hero{padding-top:32px;gap:24px}.copy h1{font-size:51px}.scene{min-height:410px}.orb-wrap{width:340px}.metric{width:145px;padding:13px}.metric b{font-size:20px}.m1{left:0}.m2{right:0}.m3{left:6%}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <header><div class="brand">FOCUS / UI</div><button id="theme">Change accent</button></header>
+  <header class="shell nav"><div class="brand"><span class="mark"></span>ORBIT OS</div><div class="nav-meta"><span class="pill">Focus system</span><button class="pill" id="spectrum">Shift spectrum</button></div></header>
   <main>
-    <section class="hero">
-      <div><p>PERSONAL PRODUCTIVITY</p><h1>Make today count.</h1><p>A responsive dashboard concept for tracking focus time, habits and weekly momentum.</p><button onclick="document.querySelector('#stats').scrollIntoView({behavior:'smooth'})">View progress</button></div>
-      <div class="card"><h2>Today</h2><div class="metric"><span>Deep work</span><strong>3h 20m</strong></div><div class="metric"><span>Tasks complete</span><strong>7 / 9</strong></div><div class="metric"><span>Daily goal</span><strong>82%</strong></div><div class="bar"><span style="width:82%"></span></div></div>
+    <section class="shell hero">
+      <div class="copy"><div class="eyebrow">Clarity in motion</div><h1>Your day, in <span>perfect orbit.</span></h1><p>A cinematic command center for deep work. Priorities, energy, and momentum live in one calm spatial interface.</p><div class="actions"><button class="primary" id="begin">Begin focus session →</button><button class="ghost" id="reset">Reset view</button></div></div>
+      <div class="scene" aria-label="3D productivity visualization">
+        <div class="orb-wrap" id="scene"><div class="orb"></div><div class="ring"></div><article class="metric m1"><i></i><small>Focus time</small><b id="timer">01:24:18</b></article><article class="metric m2"><i></i><small>Momentum</small><b>+32%</b></article><article class="metric m3"><i></i><small>Priority</small><b>Ship concept</b></article></div>
+      </div>
     </section>
-    <section class="grid" id="stats"><div class="card"><strong>14h</strong><span>Focus this week</span></div><div class="card"><strong>18</strong><span>Completed tasks</span></div><div class="card"><strong>6 days</strong><span>Current streak</span></div></section>
+    <section class="shell strip"><article class="card"><span>Sessions completed</span><strong>08</strong></article><article class="card"><span>Flow quality</span><strong>Excellent</strong></article><article class="card"><span>Weekly rhythm</span><strong>5 day streak</strong></article></section>
   </main>
   <script>
-    const colors=['#7c5cff','#ff5c8a','#00b894','#ff9f43']; let i=0;
-    document.querySelector('#theme').addEventListener('click',()=>document.documentElement.style.setProperty('--accent',colors[++i%colors.length]));
+    const scene=document.querySelector('#scene'),timer=document.querySelector('#timer');let seconds=5058,running=false,hue=0;
+    document.querySelector('#begin').onclick=()=>{running=!running;document.querySelector('#begin').textContent=running?'Pause focus session':'Resume focus session →'};
+    document.querySelector('#reset').onclick=()=>{seconds=5058;scene.style.transform=''};
+    document.querySelector('#spectrum').onclick=()=>{hue=(hue+70)%360;document.documentElement.style.filter='hue-rotate('+hue+'deg)'};
+    setInterval(()=>{if(!running)return;seconds++;const h=String(Math.floor(seconds/3600)).padStart(2,'0'),m=String(Math.floor(seconds%3600/60)).padStart(2,'0'),s=String(seconds%60).padStart(2,'0');timer.textContent=h+':'+m+':'+s},1000);
+    if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.querySelector('.scene').addEventListener('pointermove',e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;scene.style.transform='rotateX('+(-y*10)+'deg) rotateY('+(x*13)+'deg)'})}
   </script>
 </body>
 </html>
