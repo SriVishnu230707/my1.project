@@ -1,31 +1,23 @@
-# Focus Dashboard UI
+# Orbit OS — Spatial Focus Dashboard
 
-A responsive single-page productivity dashboard concept built with plain HTML, CSS and JavaScript. It demonstrates a modern hero layout, progress metrics, responsive cards and a small interactive accent-color control.
+A premium, responsive productivity interface built to turn focus metrics into a calm 3D experience.
 
-## Features
+## Highlights
 
-- Responsive desktop and mobile layout
-- Productivity metrics and progress indicator
-- Dark visual theme with gradient accents
-- Interactive accent-color switcher
-- No build tools or external dependencies
+- Pure-CSS 3D orb, orbital ring, lighting, and glass surfaces
+- Interactive focus timer and pointer-driven spatial tilt
+- Responsive composition for desktop, tablet, and mobile
+- Spectrum switching plus reduced-motion accessibility support
+- Zero dependencies: one portable HTML file
 
 ## Run locally
-
-Clone the repository and open `index.html` in any modern browser. You can also serve the folder with a simple local server:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Open `http://localhost:8000`.
 
-## Project structure
+## Stack
 
-```text
-.
-├── index.html   # Markup, styles and interaction
-└── README.md    # Project documentation
-```
-
-This is a UI demonstration project; the displayed metrics are sample data.
+Semantic HTML, modern CSS, and vanilla JavaScript.
