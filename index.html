@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Dashboard</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; --bg:#08111f; --card:#111d30; --muted:#91a4bf; --accent:#7c5cff; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at top right,#172a4f 0,#08111f 45%); color:#f5f7fb; }
+    header, main { width:min(1100px,92%); margin:auto; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:28px 0; }
+    .brand { font-weight:800; letter-spacing:.04em; }
+    button { border:0; border-radius:12px; padding:11px 16px; background:var(--accent); color:white; cursor:pointer; font-weight:700; }
+    .hero { display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:center; padding:50px 0; }
+    h1 { font-size:clamp(2.5rem,7vw,5.5rem); line-height:.95; margin:0 0 20px; }
+    p { color:var(--muted); line-height:1.7; }
+    .card { background:rgba(17,29,48,.86); border:1px solid #263956; border-radius:22px; padding:22px; box-shadow:0 24px 70px #0006; }
+    .metric { display:flex; justify-content:space-between; align-items:center; margin:14px 0; padding:14px; background:#0c1728; border-radius:14px; }
+    .bar { height:8px; background:#253553; border-radius:99px; overflow:hidden; margin-top:8px; }
+    .bar span { display:block; height:100%; background:linear-gradient(90deg,#7c5cff,#36d1dc); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding-bottom:48px; }
+    .grid strong { font-size:1.7rem; display:block; margin-bottom:4px; }
+    @media(max-width:760px){ .hero,.grid{grid-template-columns:1fr;} h1{font-size:3.4rem;} }
+  </style>
+</head>
+<body>
+  <header><div class="brand">FOCUS / UI</div><button id="theme">Change accent</button></header>
+  <main>
+    <section class="hero">
+      <div><p>PERSONAL PRODUCTIVITY</p><h1>Make today count.</h1><p>A responsive dashboard concept for tracking focus time, habits and weekly momentum.</p><button onclick="document.querySelector('#stats').scrollIntoView({behavior:'smooth'})">View progress</button></div>
+      <div class="card"><h2>Today</h2><div class="metric"><span>Deep work</span><strong>3h 20m</strong></div><div class="metric"><span>Tasks complete</span><strong>7 / 9</strong></div><div class="metric"><span>Daily goal</span><strong>82%</strong></div><div class="bar"><span style="width:82%"></span></div></div>
+    </section>
+    <section class="grid" id="stats"><div class="card"><strong>14h</strong><span>Focus this week</span></div><div class="card"><strong>18</strong><span>Completed tasks</span></div><div class="card"><strong>6 days</strong><span>Current streak</span></div></section>
+  </main>
+  <script>
+    const colors=['#7c5cff','#ff5c8a','#00b894','#ff9f43']; let i=0;
+    document.querySelector('#theme').addEventListener('click',()=>document.documentElement.style.setProperty('--accent',colors[++i%colors.length]));
+  </script>
+</body>
+</html>
